@@ -73,3 +73,6 @@ These design and technical choices were made with the user in mind. Our top prio
    - API Integration: Leveraged the Yelp Fusion API to source restaurant data, including ratings, ambiance, and location.
    - Styling: Styled components were chosen for isolated styling, keeping the UI modular and maintainable 
 
+## AI Usage
+
+## Figma Wireframe Link
