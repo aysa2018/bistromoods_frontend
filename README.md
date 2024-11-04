@@ -11,28 +11,28 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 ### Key Components
 
 1. **Home Page**  
-   - Displays introductory content and search functionality for restaurant suggestions.
+   - Displays introductory content and search functionality for restaurant suggestions
   
 2. **Restaurant Search**  
-   - Allows users to filter restaurants by ambiance, price range, and cuisine type.
+   - Allows users to filter restaurants by ambiance, price range, and cuisine type
   
 3. **Restaurant Details**  
-   - Displays selected restaurant's details, including address, Yelp rating, ambiance, and a direct link to Yelp.
+   - Displays selected restaurant's details, including address, Yelp rating, and a direct link to the resturant's Yelp page
   
 4. **Mood Filter**  
-   - Provides a visual way to select mood preferences, influencing the restaurant recommendations shown to users.
+   - Provides a visual way to select mood preferences, influencing the restaurant recommendations shown to users
 
 5. **Navigation Bar**  
-   - Allows easy access to the main pages (Home, Search, Favorites, and Profile).
+   - Allows easy access to the main pages (Home, Search, Favorites, and Profile)
 
 6. **Profile & Favorites**  
-   - Lets users save favorite restaurants and manage their dining preferences.
+   - Lets users save favorite restaurants and manage their dining preferences
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- **Node.js** and **npm**: Ensure Node.js and npm are installed on your system.
+- **Node.js** and **npm**: Ensure Node.js and npm are installed on your system
 
 ### Installation Steps
 
@@ -44,14 +44,14 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
    npm install
    
 5. **Configure Environment Variables**
- - Create a .env file in the root directory.
- - Add your Yelp API key and other necessary configurations as specified in .env.example.
- - 
+    -  Create a .env file in the root directory
+    - Add your API key 
+   
 4. **Run the Application**
    npm start
    
 5. **Access the App**
-   - Open your browser and go to http://localhost:3000 to see BistroMoods in action.
+   - Open your browser and go to http://localhost:3000 to see BistroMoods in action
 
 ## Development Process
 These design and technical choices were made with the user in mind. Our top priority was to create a frcitionless site that allows users to quickly and easily identify resturants perfectly suited to his or her mood. 
@@ -61,10 +61,10 @@ These design and technical choices were made with the user in mind. Our top prio
      - User-Centric UI/UX:
        Designed for ease of use with clean navigation and minimalistic visuals, focusing on providing users with quick and relevant restaurant recommendations.
 
-       - Responsive Layout:
+     - Responsive Layout:
          Ensured mobile compatibility for users on the go, using a responsive layout across all components.
 
-       - Mood-Based Filtering:
+     - Mood-Based Filtering:
          Implemented unique mood-based filtering to offer a personalized dining experience beyond typical search parameters.
 
 2. **Technical Choices**
