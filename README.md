@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# BistroMoods Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Description
 
-## Available Scripts
+BistroMoods is a web application designed to help users discover NYC restaurants based on their mood. By leveraging our database of moods and resturants, BistroMoods offers personalized dining recommendations, allowing users to find the perfect spot for any occasion or vibe.
 
-In the project directory, you can run:
+This repository contains the **frontend codebase** for BistroMoods, built with JavaScript to provide a seamless user interface and responsive design. The frontend handles all client-side logic, including user interactions, navigation, and dynamic rendering of restaurant data from the backend API. The backend, which manages data and API requests, is maintained in a separate repository.
 
-### `npm start`
+## Component Documentation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Key Components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Home Page**  
+   - Displays introductory content and search functionality for restaurant suggestions.
+  
+2. **Restaurant Search**  
+   - Allows users to filter restaurants by ambiance, price range, and cuisine type.
+  
+3. **Restaurant Details**  
+   - Displays selected restaurant's details, including address, Yelp rating, ambiance, and a direct link to Yelp.
+  
+4. **Mood Filter**  
+   - Provides a visual way to select mood preferences, influencing the restaurant recommendations shown to users.
 
-### `npm test`
+5. **Navigation Bar**  
+   - Allows easy access to the main pages (Home, Search, Favorites, and Profile).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. **Profile & Favorites**  
+   - Lets users save favorite restaurants and manage their dining preferences.
 
-### `npm run build`
+## Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** and **npm**: Ensure Node.js and npm are installed on your system.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation Steps
 
-### `npm run eject`
+1. **Clone the Repository**
+   git clone https://github.com/aysa2018/bistromoods_frontend.git
+   cd bistromoods_frontend
+   
+3. **Install Dependencies**
+   npm install
+   
+5. **Configure Environment Variables**
+ - Create a .env file in the root directory.
+ - Add your Yelp API key and other necessary configurations as specified in .env.example.
+ - 
+4. **Run the Application**
+   npm start
+   
+5. **Access the App**
+   - Open your browser and go to http://localhost:3000 to see BistroMoods in action.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Development Process
+These design and technical choices were made with the user in mind. Our top priority was to create a frcitionless site that allows users to quickly and easily identify resturants perfectly suited to his or her mood. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Design Decisions**
+   
+     - User-Centric UI/UX:
+       Designed for ease of use with clean navigation and minimalistic visuals, focusing on providing users with quick and relevant restaurant recommendations.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+       - Responsive Layout:
+         Ensured mobile compatibility for users on the go, using a responsive layout across all components.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+       - Mood-Based Filtering:
+         Implemented unique mood-based filtering to offer a personalized dining experience beyond typical search parameters.
 
-## Learn More
+2. **Technical Choices**
+   - Framework: Chose React for component-based architecture, reactivity, and a large ecosystem.
+   - State Management: Used Redux to handle app-wide state, particularly for user preferences, selected filters, and favorites.
+   - API Integration: Leveraged the Yelp Fusion API to source restaurant data, including ratings, ambiance, and location.
+   - Styling: Styled components were chosen for isolated styling, keeping the UI modular and maintainable 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
