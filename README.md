@@ -38,6 +38,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 
 1. **Clone the Repository**
    git clone https://github.com/aysa2018/bistromoods_frontend.git
+
    cd bistromoods_frontend
    
 3. **Install Dependencies**
@@ -74,6 +75,12 @@ These design and technical choices were made with the user in mind. Our top prio
    - Styling: Styled components were chosen for isolated styling, keeping the UI modular and maintainable 
 
 ## AI Usage
+The BistroMoods frontend was developed with the assistance of OpenAI’s AI capabilities. Here’s how AI contributed to various parts of the development process:
+
+1. Component Planning:
+AI provided guidance in breaking down the application into manageable React components, focusing on logical separation of concerns and clear data flow between components.
+2. Mock Data Structuring:
+AI helped structure the mock data in a way that reflects the expected data from the backend API, ensuring a smoother transition to real API integration in the future.
 
 ## Figma Wireframe Link
 https://www.figma.com/design/jOsQ3qwMC2oE0SdxLXI8yB/ppds_final?node-id=0-1&node-type=canvas&t=mdI9kGcN38dCQbIa-0
