@@ -17,7 +17,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
    - Allows users to filter restaurants by ambiance, price range, and cuisine type
   
 3. **Restaurant Details**  
-   - Displays selected restaurant's details, including address, Yelp rating, and a direct link to the resturant's Yelp page
+   - Displays selected restaurant's details, including address, Yelp rating, cusine, and ambiance
   
 4. **Mood Filter**  
    - Provides a visual way to select mood preferences, influencing the restaurant recommendations shown to users
