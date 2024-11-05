@@ -4,7 +4,7 @@
 
 BistroMoods is a web application designed to help users discover NYC restaurants based on their mood. By leveraging our database of moods and resturants, BistroMoods offers personalized dining recommendations, allowing users to find the perfect spot for any occasion or vibe.
 
-This repository contains the **frontend codebase** for BistroMoods, built with JavaScript to provide a seamless user interface and responsive design. The frontend handles all client-side logic, including user interactions, navigation, and dynamic rendering of restaurant data from the backend API. The backend, which manages data and API requests, is maintained in a separate repository.
+This repository contains the **frontend codebase** for BistroMoods, built with JavaScript to provide a seamless user interface and responsive design. The frontend handles all client-side logic, including user interactions, navigation, and dynamic rendering of restaurant data from the backend API (for now we are using mock data). The backend, which manages data and API requests, is maintained in a separate repository.
 
 ## Component Documentation
 
