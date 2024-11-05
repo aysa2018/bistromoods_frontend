@@ -81,6 +81,8 @@ The BistroMoods frontend was developed with the assistance of OpenAI’s AI capa
 AI provided guidance in breaking down the application into manageable React components, focusing on logical separation of concerns and clear data flow between components.
 2. Mock Data Structuring:
 AI helped structure the mock data in a way that reflects the expected data from the backend API, ensuring a smoother transition to real API integration in the future.
+3. Login and Homepage Styling
+AI helped for a base-style of the login page and the homepage, which was modified to our liking.
 
 ## Figma Wireframe Link
 https://www.figma.com/design/jOsQ3qwMC2oE0SdxLXI8yB/ppds_final?node-id=0-1&node-type=canvas&t=mdI9kGcN38dCQbIa-0
