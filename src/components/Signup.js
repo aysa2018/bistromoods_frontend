@@ -6,16 +6,19 @@ const Signup = ({ onSignup }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null); // For error messages
-    const [loading, setLoading] = useState(false); // For loading state
+   // eslint-disable-next-line no-unused-vars
+   const [error, setError] = useState(null); // For error messages
+   // eslint-disable-next-line no-unused-vars
+   const [loading, setLoading] = useState(false); // For loading state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form submitted!");
         setLoading(true); // Set loading state
-        
+      
         try {
             // Make a POST request to the FastAPI signup endpoint
+            // eslint-disable-next-line no-unused-vars
             const response = await axios.post('http://127.0.0.1:8000/users/', {
                 Username: username,
                 Email: email,

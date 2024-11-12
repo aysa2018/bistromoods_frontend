@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {

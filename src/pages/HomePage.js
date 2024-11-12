@@ -1,38 +1,60 @@
 // src/pages/HomePage.js
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import PromptInput from '../components/PromptInput';
 import RestaurantList from '../components/RestaurantList';
-import { searchRestaurantsByKeyword } from '../api'; // import the API helper
+import { searchRestaurantsByKeyword } from '../api';
 
+// Main HomePage component
 const HomePage = () => {
-    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]); // State to hold filtered restaurant data
+    const [filters, setFilters] = useState({
+        price_range: '',
+        distance_range: '',
+        dietary_restriction: '',
+        special_feature: '',
+    }); // State to hold filter selections
+    const [loading, setLoading] = useState(false); // Loading indicator
+    const [error, setError] = useState(null); // Error handling
+    const [keyword, setKeyword] = useState(''); // Keyword state for searching
 
-    const handleKeywordsExtracted = async (extractedKeywords) => {
-        const keyword = extractedKeywords[0] || ''; // Use the first extracted keyword for search
+    // Function to handle changes in filters
+    const handleFilterChange = (name, value) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [name]: value, // Update only the filter that changed
+        }));
+    };
 
-        setLoading(true);
-        setError(null); // Clear any previous errors
+    // Fetch data whenever filters or keyword changes
+    useEffect(() => {
+        const fetchData = async () => {
+            // Skip fetch if no keyword is entered
+            if (!keyword) return;
 
-        try {
-            // Use searchRestaurantsByKeyword function instead of fetch
-            const data = await searchRestaurantsByKeyword(keyword);
-            if (data.length > 0) {
-                setFilteredRestaurants(data);
-            } else {
-                setFilteredRestaurants([]); // Clear results if no restaurants found
-                setError("No restaurants found matching your criteria.");
+            setLoading(true); // Start loading
+            setError(null); // Clear previous errors
+
+            try {
+                // Fetch data from backend with keyword and filters
+                const data = await searchRestaurantsByKeyword(keyword, filters);
+                setFilteredRestaurants(data); // Update restaurant list
+            } catch (error) {
+                console.error("Error fetching restaurants:", error);
+                setError("An error occurred while fetching restaurants."); // Set error if fetch fails
+            } finally {
+                setLoading(false); // Stop loading
             }
-        } catch (error) {
-            console.error("Error fetching restaurants:", error);
-            setFilteredRestaurants([]);
-            setError("An error occurred while fetching restaurants.");
-        }
+        };
 
-        setLoading(false);
+        fetchData(); // Execute data fetch function
+    }, [filters, keyword]); // Dependencies: re-run when filters or keyword changes
+
+    // Handle keywords extracted from PromptInput
+    const handleKeywordsExtracted = (extractedKeywords) => {
+        setKeyword(extractedKeywords[0] || ''); // Use first extracted keyword if available
     };
 
     return (
@@ -40,15 +62,18 @@ const HomePage = () => {
             <Header title="BistroMoods" username="username" />
 
             <div style={styles.content}>
+                {/* Sidebar with Filter component */}
                 <aside style={styles.sidebar}>
-                    <Filter />
+                    <Filter onFilterChange={handleFilterChange} />
                 </aside>
 
                 <main style={styles.mainContent}>
                     <h1>Welcome to BistroMoods</h1>
-                    <PromptInput onKeywordsExtracted={handleKeywordsExtracted} />
                     
-                    {/* Display loading, error, or restaurant list */}
+                    {/* PromptInput for keyword extraction */}
+                    <PromptInput onKeywordsExtracted={handleKeywordsExtracted} />
+
+                    {/* Loading, error, and restaurant list display */}
                     <div className="recommended-restaurants">
                         {loading && <p>Loading restaurants...</p>}
                         {error && <p style={styles.error}>{error}</p>}
@@ -60,6 +85,7 @@ const HomePage = () => {
     );
 };
 
+// Styling for the HomePage component
 const styles = {
     homePage: {
         display: 'flex',

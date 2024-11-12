@@ -1,7 +1,13 @@
 // src/components/Filter.js
 import React from 'react';
 
-const Filter = () => {
+const Filter = ({ onFilterChange }) => {
+    // Handle changes in dropdowns and pass to parent component (HomePage)
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        onFilterChange(name, value);
+    };
+
     return (
         <div style={styles.filterContainer}>
             <h3>Filter by:</h3>
@@ -9,50 +15,51 @@ const Filter = () => {
             {/* Price Range */}
             <div style={styles.filterGroup}>
                 <label>Price Range</label>
-                <select style={styles.select}>
+                <select name="price_range" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
                 </select>
             </div>
 
             {/* Distance Range */}
             <div style={styles.filterGroup}>
                 <label>Distance Range</label>
-                <select style={styles.select}>
+                <select name="distance_range" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
-                    <option value="near">Near</option>
-                    <option value="moderate">Moderate</option>
-                    <option value="far">Far</option>
+                    <option value="Near">Near</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Far">Far</option>
                 </select>
             </div>
 
             {/* Dietary Restrictions */}
             <div style={styles.filterGroup}>
                 <label>Dietary Restrictions</label>
-                <select style={styles.select}>
+                <select name="dietary_restriction" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="glutenFree">Gluten-Free</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
                 </select>
             </div>
 
             {/* Special Filters */}
             <div style={styles.filterGroup}>
-                <label>Special Filters</label>
-                <select style={styles.select}>
+                <label>Special Features</label>
+                <select name="special_feature" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
-                    <option value="familyFriendly">Family Friendly</option>
-                    <option value="petFriendly">Pet Friendly</option>
-                    <option value="outdoorSeating">Outdoor Seating</option>
+                    <option value="family friendly">Family Friendly</option>
+                    <option value="pet friendly">Pet Friendly</option>
+                    <option value="outdoor seating">Outdoor Seating</option>
                 </select>
             </div>
         </div>
     );
 };
 
+// Styling for Filter component
 const styles = {
     filterContainer: {
         width: '200px',
