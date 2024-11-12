@@ -3,39 +3,26 @@ import React, { useState } from 'react';
 
 const PromptInput = ({ onKeywordsExtracted }) => {
     const [prompt, setPrompt] = useState("");
-    const [keywords, setKeywords] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const simulatedKeywords = ["relaxed", "cozy"]; // Mock data for keywords
-        setKeywords(simulatedKeywords);
-        onKeywordsExtracted(simulatedKeywords);
+        const extractedKeywords = prompt.split(" "); // Simple split; replace with actual extraction logic if available
+        onKeywordsExtracted(extractedKeywords); // Pass extracted keywords to parent component
     };
 
     return (
         <div style={styles.promptContainer}>
-            <form onSubmit={handleSubmit} className="prompt-form">
+            <form onSubmit={handleSubmit}>
                 <textarea
                     placeholder="Describe your mood or what you’re looking for..."
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    className="prompt-textarea"
                     style={styles.textarea}
                 />
-                <button type="submit" className="prompt-button" style={styles.button}>
+                <button type="submit" style={styles.button}>
                     Find the perfect match!
                 </button>
             </form>
-            {keywords.length > 0 && (
-                <div style={styles.keywordContainer}>
-                    <h3>Extracted Keywords:</h3>
-                    <ul>
-                        {keywords.map((keyword, index) => (
-                            <li key={index}>{keyword}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
         </div>
     );
 };
@@ -63,9 +50,6 @@ const styles = {
         border: 'none',
         borderRadius: '4px',
         cursor: 'pointer',
-    },
-    keywordContainer: {
-        marginTop: '15px',
     },
 };
 

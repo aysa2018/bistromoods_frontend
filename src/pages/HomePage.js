@@ -1,25 +1,39 @@
 // src/pages/HomePage.js
-// src/pages/HomePage.js
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import PromptInput from '../components/PromptInput';
 import RestaurantList from '../components/RestaurantList';
-import { mockRestaurants } from '../mockData';
+import { searchRestaurantsByKeyword } from '../api'; // import the API helper
 
 const HomePage = () => {
-    const [keywords, setKeywords] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleKeywordsExtracted = (extractedKeywords) => {
-        setKeywords(extractedKeywords);
+    const handleKeywordsExtracted = async (extractedKeywords) => {
+        const keyword = extractedKeywords[0] || ''; // Use the first extracted keyword for search
+
+        setLoading(true);
+        setError(null); // Clear any previous errors
+
+        try {
+            // Use searchRestaurantsByKeyword function instead of fetch
+            const data = await searchRestaurantsByKeyword(keyword);
+            if (data.length > 0) {
+                setFilteredRestaurants(data);
+            } else {
+                setFilteredRestaurants([]); // Clear results if no restaurants found
+                setError("No restaurants found matching your criteria.");
+            }
+        } catch (error) {
+            console.error("Error fetching restaurants:", error);
+            setFilteredRestaurants([]);
+            setError("An error occurred while fetching restaurants.");
+        }
+
+        setLoading(false);
     };
-
-    // Filter restaurants based on keywords
-    const filteredRestaurants = mockRestaurants.filter((restaurant) =>
-        keywords.some((keyword) =>
-            restaurant.Keywords.includes(keyword.toLowerCase())
-        )
-    );
 
     return (
         <div className="home-page" style={styles.homePage}>
@@ -33,8 +47,11 @@ const HomePage = () => {
                 <main style={styles.mainContent}>
                     <h1>Welcome to BistroMoods</h1>
                     <PromptInput onKeywordsExtracted={handleKeywordsExtracted} />
+                    
+                    {/* Display loading, error, or restaurant list */}
                     <div className="recommended-restaurants">
-                        
+                        {loading && <p>Loading restaurants...</p>}
+                        {error && <p style={styles.error}>{error}</p>}
                         <RestaurantList restaurants={filteredRestaurants} />
                     </div>
                 </main>
@@ -61,6 +78,10 @@ const styles = {
     mainContent: {
         flex: '1',
         paddingLeft: '20px',
+    },
+    error: {
+        color: 'red',
+        fontWeight: 'bold',
     },
 };
 
