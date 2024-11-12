@@ -87,7 +87,7 @@ These endpoints support the core functionality of the frontend, enabling account
    
 2. **Install Dependencies**
    ```
-   npm install
+   npm install axios
    ```
    
 3. **Configure Environment Variables**
