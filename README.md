@@ -29,7 +29,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
    - Lets users save favorite restaurants and manage their dining preferences
 
 ## API Endpoints
-1. User Sign-Up
+1. ***User Sign-Up***
 - Endpoint: POST /users/
 - Description: Creates a new user account.
 - Request Body:
@@ -45,7 +45,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
   - 200 OK: Returns the created user details.
   - 400 Bad Request: Username is already registered.
     
-2. User Login
+2. ***User Login***
 - Endpoint: POST /login/
 - Description: Authenticates a user with email and password.
 - Request Body:
@@ -59,7 +59,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
   - 200 OK: { "message": "Login successful" }
   - 400 Bad Request: Invalid email or password.
     
-3. Keyword Search
+3. ***Keyword Search***
 - Endpoint: GET /restaurants/search/
 - Description: Searches for restaurants based on a keyword match in CuisineType or MoodName.
 - Query Parameter:
