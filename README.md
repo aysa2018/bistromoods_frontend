@@ -60,7 +60,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
   - 400 Bad Request: Invalid email or password.
     
 3. ***Keyword Search***
-- Endpoint: GET /restaurants/search/
+- Endpoint: GET /restaurants/search/?keyword={keyword}
 - Description: Searches for restaurants based on a keyword match in CuisineType or MoodName.
 - Query Parameter:
   - keyword: The search keyword.
