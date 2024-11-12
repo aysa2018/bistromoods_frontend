@@ -4,7 +4,7 @@
 
 BistroMoods is a web application designed to help users discover NYC restaurants based on their mood. By leveraging our database of moods and resturants, BistroMoods offers personalized dining recommendations, allowing users to find the perfect spot for any occasion or vibe.
 
-This repository contains the **frontend codebase** for BistroMoods, built with JavaScript to provide a seamless user interface and responsive design. The frontend handles all client-side logic, including user interactions, navigation, and dynamic rendering of restaurant data from the backend API (for now we are using mock data). The backend, which manages data and API requests, is maintained in a separate repository.
+This repository contains the **frontend codebase** for BistroMoods, built with JavaScript to provide a seamless user interface and responsive design. The frontend handles all client-side logic, including user interactions, navigation, and dynamic rendering of restaurant data from the backend API. The backend, which manages data and API requests, is maintained in a separate repository.
 
 ## Component Documentation
 
@@ -28,6 +28,48 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 6. **Profile & Favorites**  
    - Lets users save favorite restaurants and manage their dining preferences
 
+## API Endpoints
+1. User Sign-Up
+- Endpoint: POST /users/
+- Description: Creates a new user account.
+- Request Body:
+ ```json
+{
+  "Username": "string",
+  "Email": "string",
+  "Password": "string",
+  "Preferences": {"key": "value"}  
+}
+ ```
+- Response:
+  - 200 OK: Returns the created user details.
+  - 400 Bad Request: Username is already registered.
+    
+2. User Login
+- Endpoint: POST /login/
+- Description: Authenticates a user with email and password.
+- Request Body:
+```json
+{
+  "Email": "string",
+  "Password": "string"
+}
+```
+- Response:
+  - 200 OK: { "message": "Login successful" }
+  - 400 Bad Request: Invalid email or password.
+    
+3. Keyword Search
+- Endpoint: GET /restaurants/search/
+- Description: Searches for restaurants based on a keyword match in CuisineType or MoodName.
+- Query Parameter:
+  - keyword: The search keyword.
+- Response:
+  - 200 OK: Returns a list of matching restaurants.
+  - 404 Not Found: No restaurants match the search criteria.
+
+These endpoints support the core functionality of the frontend, enabling account management and mood-based restaurant recommendations.
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -37,21 +79,30 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 ### Installation Steps
 
 1. **Clone the Repository**
+   ```
    git clone https://github.com/aysa2018/bistromoods_frontend.git
 
    cd bistromoods_frontend
+   ```
    
-3. **Install Dependencies**
+2. **Install Dependencies**
+   ```
    npm install
+   ```
    
-5. **Configure Environment Variables**
+3. **Configure Environment Variables**
     -  Create a .env file in the root directory
-    - Add your API key 
-   
+    - add the following enviornment variable:
+      ```
+      REACT_APP_API_BASE_URL=http://localhost:8000  # Adjust if your backend server runs on a different URL
+      ```
+      
 4. **Run the Application**
+   ```
    npm start
+   ```
    
-5. **Access the App**
+6. **Access the App**
    - Open your browser and go to http://localhost:3000 to see BistroMoods in action
 
 ## Development Process
