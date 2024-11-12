@@ -4,10 +4,32 @@ import React, { useState } from 'react';
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onLogin(); // Mock login success for now
+        try {
+            const response = await fetch("http://127.0.0.1:8000/login/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ Email: email, Password: password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Login successful:", data);
+                onLogin();  // Call this prop if you need to trigger other actions on successful login
+                // Save the token if you have one in response
+                // localStorage.setItem("token", data.token);
+            } else {
+                const errorData = await response.json();
+                setError(errorData.detail || "Login failed");
+            }
+        } catch (err) {
+            setError("Login failed. Please try again.");
+        }
     };
 
     return (
@@ -16,6 +38,8 @@ const Login = ({ onLogin }) => {
             <form onSubmit={handleSubmit} style={styles.form}>
                 <input
                     type="email"
+                    id="email"
+                    name="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -23,6 +47,8 @@ const Login = ({ onLogin }) => {
                 />
                 <input
                     type="password"
+                    id="password"
+                    name="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

@@ -17,7 +17,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
    - Allows users to filter restaurants by ambiance, price range, and cuisine type
   
 3. **Restaurant Details**  
-   - Displays selected restaurant's details, including address, Yelp rating, and a direct link to the resturant's Yelp page
+   - Displays selected restaurant's details, including address, Yelp rating, cusine, and ambiance
   
 4. **Mood Filter**  
    - Provides a visual way to select mood preferences, influencing the restaurant recommendations shown to users
@@ -28,6 +28,48 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 6. **Profile & Favorites**  
    - Lets users save favorite restaurants and manage their dining preferences
 
+## API Endpoints
+1. ***User Sign-Up***
+- Endpoint: POST /users/
+- Description: Creates a new user account.
+- Request Body:
+ ```json
+{
+  "Username": "string",
+  "Email": "string",
+  "Password": "string",
+  "Preferences": {"key": "value"}  
+}
+ ```
+- Response:
+  - 200 OK: Returns the created user details.
+  - 400 Bad Request: Username is already registered.
+    
+2. ***User Login***
+- Endpoint: POST /login/
+- Description: Authenticates a user with email and password.
+- Request Body:
+```json
+{
+  "Email": "string",
+  "Password": "string"
+}
+```
+- Response:
+  - 200 OK: { "message": "Login successful" }
+  - 400 Bad Request: Invalid email or password.
+    
+3. ***Keyword Search***
+- Endpoint: GET /restaurants/search/
+- Description: Searches for restaurants based on a keyword match in CuisineType or MoodName.
+- Query Parameter:
+  - keyword: The search keyword.
+- Response:
+  - 200 OK: Returns a list of matching restaurants.
+  - 404 Not Found: No restaurants match the search criteria.
+
+These endpoints support the core functionality of the frontend, enabling account management and mood-based restaurant recommendations.
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -37,20 +79,30 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 ### Installation Steps
 
 1. **Clone the Repository**
+   ```
    git clone https://github.com/aysa2018/bistromoods_frontend.git
+
    cd bistromoods_frontend
+   ```
    
-3. **Install Dependencies**
-   npm install
+2. **Install Dependencies**
+   ```
+   npm install axios
+   ```
    
-5. **Configure Environment Variables**
+3. **Configure Environment Variables**
     -  Create a .env file in the root directory
-    - Add your API key 
-   
+    - add the following enviornment variable:
+      ```
+      REACT_APP_API_BASE_URL=http://localhost:8000  # Adjust if your backend server runs on a different URL
+      ```
+      
 4. **Run the Application**
+   ```
    npm start
+   ```
    
-5. **Access the App**
+6. **Access the App**
    - Open your browser and go to http://localhost:3000 to see BistroMoods in action
 
 ## Development Process
@@ -74,5 +126,14 @@ These design and technical choices were made with the user in mind. Our top prio
    - Styling: Styled components were chosen for isolated styling, keeping the UI modular and maintainable 
 
 ## AI Usage
+The BistroMoods frontend was developed with the assistance of OpenAI’s AI capabilities. Here’s how AI contributed to various parts of the development process:
+
+1. Component Planning:
+AI provided guidance in breaking down the application into manageable React components, focusing on logical separation of concerns and clear data flow between components.
+2. Mock Data Structuring:
+AI helped structure the mock data in a way that reflects the expected data from the backend API, ensuring a smoother transition to real API integration in the future.
+3. Login and Homepage Styling
+AI helped for a base-style of the login page and the homepage, which was modified to our liking.
 
 ## Figma Wireframe Link
+https://www.figma.com/design/jOsQ3qwMC2oE0SdxLXI8yB/ppds_final?node-id=0-1&node-type=canvas&t=mdI9kGcN38dCQbIa-0
