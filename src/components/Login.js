@@ -6,9 +6,19 @@ const Login = ({ onLogin }) => {
     const [password, setPassword] = useState("");
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false); // Loading state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(""); // Reset the error message before each login attempt
+        setLoading(true); // Start loading indicator
+
+        if (!email || !password) {
+            setError("Please enter both email and password.");
+            setLoading(false); // Stop loading
+            return;
+        }
+
         try {
             const response = await fetch("http://127.0.0.1:8000/login/", {
                 method: "POST",
@@ -26,16 +36,26 @@ const Login = ({ onLogin }) => {
                 // localStorage.setItem("token", data.token);
             } else {
                 const errorData = await response.json();
-                setError(errorData.detail || "Login failed");
+                if (response.status === 401) {
+                    setError("Invalid email or password. Please try again.");
+                } else if (response.status === 404) {
+                    setError("User not found. Please check your email.");
+                } else {
+                    setError(errorData.detail || "Something went wrong. Please try again.");
+                }
             }
         } catch (err) {
-            setError("Login failed. Please try again.");
+            setError("Unable to connect to the server. Please check your internet connection.");
+        } finally {
+            setLoading(false); // Stop loading after request completes
         }
     };
 
     return (
         <div style={styles.container}>
             <h2 style={styles.title}>Login</h2>
+            {error && <p style={styles.error}>{error}</p>} {/* Display error message */}
+            {loading && <p style={styles.loading}>Logging in...</p>} {/* Display loading message */}
             <form onSubmit={handleSubmit} style={styles.form}>
                 <input
                     type="email"
@@ -45,6 +65,7 @@ const Login = ({ onLogin }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     style={styles.input}
+                    disabled={loading} // Disable input during loading
                 />
                 <input
                     type="password"
@@ -54,6 +75,7 @@ const Login = ({ onLogin }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     style={styles.input}
+                    disabled={loading} // Disable input during loading
                 />
                 <button type="submit" style={styles.button}>Login</button>
             </form>
@@ -101,8 +123,17 @@ const styles = {
         cursor: 'pointer',
         transition: 'background-color 0.3s',
     },
-    buttonHover: {
-        backgroundColor: '#0056b3',
+    error: {
+        color: "red",
+        marginBottom: "10px",
+        fontSize: "14px",
+        textAlign: "center",
+    },
+    loading: {
+        color: "blue",
+        marginBottom: "10px",
+        fontSize: "14px",
+        textAlign: "center",
     },
 };
 

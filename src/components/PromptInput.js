@@ -6,8 +6,8 @@ const PromptInput = ({ onKeywordsExtracted }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const extractedKeywords = prompt.split(" "); // Simple split; replace with actual extraction logic if available
-        onKeywordsExtracted(extractedKeywords); // Pass extracted keywords to parent component
+        const extractedKeywords = prompt.trim().split(" "); // Trim whitespace and split by spaces
+        onKeywordsExtracted(extractedKeywords);
     };
 
     return (

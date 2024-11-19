@@ -50,9 +50,9 @@ const Filter = ({ onFilterChange }) => {
                 <label>Special Features</label>
                 <select name="special_feature" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
-                    <option value="family friendly">Family Friendly</option>
-                    <option value="pet friendly">Pet Friendly</option>
-                    <option value="outdoor seating">Outdoor Seating</option>
+                    <option value="Family Friendly">Family Friendly</option>
+                    <option value="Pet Friendly">Pet Friendly</option>
+                    <option value="Outdoor Seating">Outdoor Seating</option>
                 </select>
             </div>
         </div>
