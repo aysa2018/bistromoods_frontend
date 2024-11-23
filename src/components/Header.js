@@ -1,25 +1,31 @@
 // src/components/Header.js
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Header = ({ title, username }) => {
+// Header component with title and profile link
+const Header = ({ title }) => {
     const navigate = useNavigate();
+
+    // Navigate to profile page on click
+    const handleProfileClick = () => {
+        navigate('/profile'); // Redirect to /profile
+    };
 
     return (
         <header style={styles.header}>
-            <h1>{title}</h1>
-            {/* Make the username clickable to redirect to the profile page */}
-            <div
-                style={styles.username}
-                onClick={() => navigate('/profile')}
-                title="Go to your profile"
+            <h1 style={styles.title}>{title}</h1>
+            <span
+                style={styles.profileLink}
+                onClick={handleProfileClick}
             >
-                {username}
-            </div>
+                Profile
+            </span>
         </header>
     );
 };
 
+// Styling for Header component
 const styles = {
     header: {
         display: 'flex',
@@ -27,13 +33,18 @@ const styles = {
         alignItems: 'center',
         width: '100%',
         padding: '10px 20px',
-        backgroundColor: '#f8f8f8',
-        borderBottom: '1px solid #ddd',
+        backgroundColor: '#f4f4f4',
+        borderBottom: '1px solid #ccc',
     },
-    username: {
-        cursor: 'pointer',
-        color: '#007bff',
-        textDecoration: 'underline',
+    title: {
+        margin: 0,
+        fontSize: '1.5rem',
+    },
+    profileLink: {
+        fontSize: '1rem',
+        color: '#007bff', // Blue color
+        textDecoration: 'underline', // Underlined
+        cursor: 'pointer', // Pointer cursor to mimic a link
     },
 };
 
