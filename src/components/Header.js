@@ -1,20 +1,22 @@
 // src/components/Header.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Header = ({ username }) => {
+const Header = ({ title, username }) => {
+    const navigate = useNavigate();
+
     return (
-        <div style={styles.header}>
-            <div style={styles.leftPlaceholder}></div>
-            <h1 style={styles.title}>BistroMoods</h1>
-            <div style={styles.profile}>
-                <img 
-                    src="https://via.placeholder.com/40" 
-                    alt="Profile" 
-                    style={styles.profilePic} 
-                />
-                <span>{username}</span>
+        <header style={styles.header}>
+            <h1>{title}</h1>
+            {/* Make the username clickable to redirect to the profile page */}
+            <div
+                style={styles.username}
+                onClick={() => navigate('/profile')}
+                title="Go to your profile"
+            >
+                {username}
             </div>
-        </div>
+        </header>
     );
 };
 
@@ -23,32 +25,15 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#333',
+        width: '100%',
         padding: '10px 20px',
-        color: '#fff',
-        width: '100vw',           // Full viewport width
-        boxSizing: 'border-box',   // Ensures padding doesn’t affect the width
+        backgroundColor: '#f8f8f8',
+        borderBottom: '1px solid #ddd',
     },
-    leftPlaceholder: {
-        width: '40px',             // Placeholder to balance the layout
-    },
-    title: {
-        fontSize: '24px',
-        color: '#fff',
-        textAlign: 'center',
-        flex: '1',
-        margin: 0,
-    },
-    profile: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    profilePic: {
-        borderRadius: '50%',
-        width: '40px',
-        height: '40px',
-        marginRight: '10px',
-        border: '2px solid #fff',
+    username: {
+        cursor: 'pointer',
+        color: '#007bff',
+        textDecoration: 'underline',
     },
 };
 
