@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import PromptInput from '../components/PromptInput';
@@ -16,6 +16,7 @@ const HomePage = () => {
         price_range: '', // Price range filter ('Low', 'Medium', 'High')
         dietary_restriction: '', // Dietary restriction filter (e.g., 'Vegan')
         special_feature: '', // Special feature filter (e.g., 'Family Friendly')
+        neighborhoods: [], // Neighborhoods filter (supports multiple selections)
     });
 
     // Loading indicator to show while data is being fetched
@@ -27,13 +28,13 @@ const HomePage = () => {
     // State to store user input from the PromptInput component
     const [userPrompt, setUserPrompt] = useState('');
 
-    // Function to handle filter changes
-    const handleFilterChange = (name, value) => {
+    // Function to handle filter changes (wrapped in useCallback to prevent re-renders)
+    const handleFilterChange = useCallback((name, value) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
             [name]: value, // Update only the filter that changed
         }));
-    };
+    }, []);
 
     // Fetch restaurant data whenever userPrompt or filters change
     useEffect(() => {
