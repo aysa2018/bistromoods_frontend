@@ -17,15 +17,14 @@ const RestaurantList = ({ restaurants }) => {
                         }
                     }}
                     
-                    // onClick={() => window.open(restaurant.YelpURL, '_blank')} // Opens Yelp link in a new tab
+                    
                 >
                     <h3>{restaurant.Name}</h3>
                     <p><strong>Cuisine:</strong> {restaurant.CuisineType}</p>
                     <p><strong>Address:</strong> {restaurant.Address}</p>
                     <p><strong>Rating:</strong> {restaurant.Rating}</p>
                     <p><strong>Price Range:</strong> {restaurant.PriceRange}</p>
-                    <p><strong>Ambiance:</strong> {restaurant.Ambiance}</p>
-                    <p><strong>Link:</strong> {restaurant.YelpURL}</p>
+                    
                 </div>
             ))}
         </div>
