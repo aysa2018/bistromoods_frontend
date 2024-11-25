@@ -1,0 +1,90 @@
+/* Login.css */
+
+/* Entire page background with gradient */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, var(--gradient-color), var(--secondary-color)); /* Gradient green from App.css */
+    color: var(--text-color); /* Consistent text color */
+    text-align: center;
+}
+
+/* Logo styles */
+.login-logo {
+    width: 300px; /* Larger logo size */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 40px; /* Space between the logo and the login box */
+}
+
+/* Login box styles */
+.login-container {
+    width: 100%;
+    max-width: 400px; /* Limit login box width */
+    padding: 20px; /* Inner spacing */
+    background-color: var(--card-background); /* Cream background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Title styles */
+.login-title {
+    margin-bottom: 20px;
+    font-size: 28px; /* Slightly larger title font */
+    color: var(--primary-color); /* White or accent color */
+    font-family: var(--header-font); /* Consistent header font */
+}
+
+/* Form container */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Input fields */
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Subtle border */
+    font-family: var(--body-font); /* Nostalgic font */
+}
+
+/* Login button */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #fff;
+    background-color: var(--secondary-color); /* Forest green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+.login-button:hover {
+    background-color: var(--button-hover-color); /* Darker green */
+}
+
+/* Error message */
+.login-error {
+    color: red; /* Bright red for error */
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Loading message */
+.login-loading {
+    color: var(--primary-color); /* Accent color for loading */
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
