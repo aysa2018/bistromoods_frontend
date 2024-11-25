@@ -82,17 +82,6 @@ const Filter = ({ onFilterChange }) => {
                 </select>
             </div>
 
-            {/* Distance Range */}
-            <div style={styles.filterGroup}>
-                <label>Distance Range</label>
-                <select name="distance_range" style={styles.select} onChange={handleChange}>
-                    <option value="">Select</option>
-                    <option value="Near">Near</option>
-                    <option value="Moderate">Moderate</option>
-                    <option value="Far">Far</option>
-                </select>
-            </div>
-
             {/* Dietary Restrictions */}
             <div style={styles.filterGroup}>
                 <label>Dietary Restrictions</label>
@@ -116,7 +105,7 @@ const Filter = ({ onFilterChange }) => {
             </div>
 
             {/* Borough and Neighborhood Filters */}
-            <h4>Neighborhoods</h4>
+            <label>Neighborhoods</label>
             {Object.keys(neighborhoods).map((borough) => (
                 <div key={borough} style={styles.boroughSection}>
                     <label>
@@ -129,14 +118,16 @@ const Filter = ({ onFilterChange }) => {
                     </label>
                     <div style={{ paddingLeft: "20px" }}>
                         {neighborhoods[borough].map((neighborhood) => (
-                            <label key={neighborhood} style={{ display: "block" }}>
-                                <input
-                                    type="checkbox"
-                                    checked={selectedNeighborhoods.includes(neighborhood)}
-                                    onChange={() => handleNeighborhoodChange(neighborhood)}
-                                />
-                                {neighborhood}
-                            </label>
+                            <div style={styles.filterGroup}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedNeighborhoods.includes(neighborhood)}
+                                        onChange={() => handleNeighborhoodChange(neighborhood)}
+                                    />
+                                    {neighborhood}
+                                </label>
+                            </div>
                         ))}
                     </div>
                 </div>
