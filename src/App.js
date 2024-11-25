@@ -42,7 +42,7 @@ function App() {
                             path="/"
                             element={
                                 <div>
-                                    <h1>Welcome to BistroMoods</h1>
+                                    {/* <h1>Welcome to BistroMoods</h1> */}
                                     {showSignup ? (
                                         <>
                                             <Signup onSignup={handleLogin} />
