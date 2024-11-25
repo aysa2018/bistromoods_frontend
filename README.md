@@ -8,7 +8,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 
 
 
-##Instructions
+## Instructions
 
 Please visit the Backend **[bistromoods](https://github.com/yourusername/bistromoods)** repo and follow the instructions there to run th app.
 
