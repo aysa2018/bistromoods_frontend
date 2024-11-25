@@ -1,5 +1,4 @@
 // src/components/Header.js
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,7 +32,7 @@ const styles = {
         alignItems: 'center',
         width: '100%',
         padding: '10px 20px',
-        backgroundColor: '#f4f4f4',
+        backgroundColor: '#415d43',
         borderBottom: '1px solid #ccc',
     },
     title: {
