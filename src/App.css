@@ -15,10 +15,14 @@
 body {
   font-family: var(--body-font);
   color: var(--text-color);
-  background: linear-gradient(135deg, var(--secondary-color), var(--gradient-color));
+  background: 
+    url('./pages/texturemain.png'), /* Updated relative path */
+    linear-gradient(135deg, var(--secondary-color), var(--gradient-color)); /* Gradient layer */
+  background-size: cover, cover; /* Scale both texture and gradient */
+  background-blend-mode: overlay; /* Blend texture with gradient */
+  background-attachment: fixed; /* Keeps the background fixed during scroll */
   margin: 0;
   padding: 0;
-  background-attachment: fixed; /* Keeps the gradient fixed during scroll */
 }
 
 h1, h2, h3, h4, h5, h6 {

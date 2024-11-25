@@ -1,20 +1,25 @@
 /* Login.css */
 
-/* Entire page background with gradient */
+/* Entire page background with gradient and texture */
 .login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh; /* Full viewport height */
-    background: linear-gradient(135deg, var(--gradient-color), var(--secondary-color)); /* Gradient green from App.css */
-    color: var(--text-color); /* Consistent text color */
+    background: 
+        url('./texture.png'), /* Transparent texture file */
+        linear-gradient(135deg, var(--gradient-color), var(--secondary-color)); /* Gradient colors from theme */
+    background-size: cover, cover; /* Scale both texture and gradient */
+    background-blend-mode: overlay; /* Blend the texture with the gradient */
+    color: var(--text-color); /* Light gray text */
     text-align: center;
+    font-family: var(--body-font); /* Nostalgic serif font */
 }
 
 /* Logo styles */
 .login-logo {
-    width: 300px; /* Larger logo size */
+    width: 350px; /* Make the logo slightly larger */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 40px; /* Space between the logo and the login box */
 }
@@ -24,7 +29,7 @@
     width: 100%;
     max-width: 400px; /* Limit login box width */
     padding: 20px; /* Inner spacing */
-    background-color: var(--card-background); /* Cream background for contrast */
+    background-color: var(--card-background); /* Dark greenish gray for cards */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
@@ -32,9 +37,9 @@
 /* Title styles */
 .login-title {
     margin-bottom: 20px;
-    font-size: 28px; /* Slightly larger title font */
-    color: var(--primary-color); /* White or accent color */
-    font-family: var(--header-font); /* Consistent header font */
+    font-size: 28px; /* Larger title font */
+    color: var(--primary-color); /* White text accents */
+    font-family: var(--header-font); /* Trendy font for header */
 }
 
 /* Form container */
@@ -51,8 +56,10 @@
     margin-bottom: 15px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ddd; /* Subtle border */
-    font-family: var(--body-font); /* Nostalgic font */
+    border: 1px solid var(--border-color); /* Subtle border color */
+    background-color: var(--card-background); /* Consistent card background */
+    color: var(--text-color); /* Light gray text */
+    font-family: var(--body-font); /* Nostalgic serif font */
 }
 
 /* Login button */
@@ -60,7 +67,7 @@
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    color: #fff;
+    color: var(--primary-color); /* White for button text */
     background-color: var(--secondary-color); /* Forest green */
     border: none;
     border-radius: 5px;
@@ -70,7 +77,7 @@
 
 /* Button hover effect */
 .login-button:hover {
-    background-color: var(--button-hover-color); /* Darker green */
+    background-color: var(--button-hover-color); /* Darker forest green */
 }
 
 /* Error message */
@@ -83,7 +90,7 @@
 
 /* Loading message */
 .login-loading {
-    color: var(--primary-color); /* Accent color for loading */
+    color: var(--primary-color); /* Light cream for loading */
     margin-bottom: 10px;
     font-size: 14px;
     text-align: center;
