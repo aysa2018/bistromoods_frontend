@@ -7,7 +7,8 @@ export const searchRestaurantsByUserInput = async (userPrompt, filters) => {
     if (filters.rating) params.append("rating", filters.rating); // Add rating filter
     if (filters.price_range) params.append("price_range", filters.price_range); // Add price range filter
     if (filters.dietary_restriction) params.append("dietary_restriction", filters.dietary_restriction); // Add dietary restriction filter
-    if (filters.special_feature) params.append("special_feature", filters.special_feature); // Add special feature filter
+    if (filters.special_feature) params.append("special_feature", filters.special_feature);// Add special feature filter
+    if (filters.neighborhoods) params.append("neighborhoods", filters.neighborhoods); // Add neighborhood filter
 
     try {
         // Make a GET request to the backend API with query string

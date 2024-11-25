@@ -1,7 +1,66 @@
-// src/components/Filter.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Filter = ({ onFilterChange }) => {
+    // State for selected neighborhoods
+    const [selectedNeighborhoods, setSelectedNeighborhoods] = useState([]);
+
+    // Define boroughs and neighborhoods matching the backend `neighborhoods.py`
+    const neighborhoods = {
+        Manhattan: [
+            "Harlem",
+            "Upper East Side",
+            "Upper West Side",
+            "Midtown",
+            "Chelsea",
+            "West Village",
+            "SoHo",
+            "East Village",
+            "Tribeca",
+            "Financial District",
+        ],
+        Brooklyn: [
+            "Williamsburg",
+            "DUMBO",
+            "Brooklyn Heights",
+            "Park Slope",
+            "Bushwick",
+            "Downtown Brooklyn",
+        ],
+        Queens: [
+            "Astoria",
+            "Long Island City",
+            "Flushing",
+            "Forest Hills",
+            "Jackson Heights",
+        ],
+    };
+
+    // Handle neighborhood checkbox changes
+    const handleNeighborhoodChange = (neighborhood) => {
+        setSelectedNeighborhoods((prev) =>
+            prev.includes(neighborhood)
+                ? prev.filter((n) => n !== neighborhood)
+                : [...prev, neighborhood]
+        );
+    };
+
+    // Handle "Select All" for a borough
+    const handleSelectAll = (borough) => {
+        const boroughNeighborhoods = neighborhoods[borough];
+        const allSelected = boroughNeighborhoods.every((n) => selectedNeighborhoods.includes(n));
+        setSelectedNeighborhoods((prev) =>
+            allSelected
+                ? prev.filter((n) => !boroughNeighborhoods.includes(n)) // Remove all
+                : [...prev, ...boroughNeighborhoods.filter((n) => !prev.includes(n))] // Add missing
+        );
+    };
+
+    // Convert selected neighborhoods to a string format suitable for the backend
+    useEffect(() => {
+        const selectedNeighborhoodString = selectedNeighborhoods.join(",").toLowerCase(); // Convert to lowercase for backend compatibility
+        onFilterChange("neighborhoods", selectedNeighborhoodString);
+    }, [selectedNeighborhoods, onFilterChange]);
+
     // Handle changes in dropdowns and pass to parent component (HomePage)
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,7 +104,7 @@ const Filter = ({ onFilterChange }) => {
                 </select>
             </div>
 
-            {/* Special Filters */}
+            {/* Special Features */}
             <div style={styles.filterGroup}>
                 <label>Special Features</label>
                 <select name="special_feature" style={styles.select} onChange={handleChange}>
@@ -55,6 +114,33 @@ const Filter = ({ onFilterChange }) => {
                     <option value="Outdoor Seating">Outdoor Seating</option>
                 </select>
             </div>
+
+            {/* Borough and Neighborhood Filters */}
+            <h4>Neighborhoods</h4>
+            {Object.keys(neighborhoods).map((borough) => (
+                <div key={borough} style={styles.boroughSection}>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={neighborhoods[borough].every((n) => selectedNeighborhoods.includes(n))}
+                            onChange={() => handleSelectAll(borough)}
+                        />
+                        {borough} (Select All)
+                    </label>
+                    <div style={{ paddingLeft: "20px" }}>
+                        {neighborhoods[borough].map((neighborhood) => (
+                            <label key={neighborhood} style={{ display: "block" }}>
+                                <input
+                                    type="checkbox"
+                                    checked={selectedNeighborhoods.includes(neighborhood)}
+                                    onChange={() => handleNeighborhoodChange(neighborhood)}
+                                />
+                                {neighborhood}
+                            </label>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
@@ -78,6 +164,12 @@ const styles = {
         fontSize: '16px',
         borderRadius: '4px',
         border: '1px solid #ddd',
+    },
+    boroughSection: {
+        marginBottom: '15px',
+        border: '1px solid #ddd',
+        borderRadius: '5px',
+        padding: '10px',
     },
 };
 
