@@ -1,22 +1,33 @@
 // src/components/RestaurantList.js
 import React from 'react';
+import '../App.css'; // Import custom CSS for styling
 
 const RestaurantList = ({ restaurants }) => {
     return (
-        <div>
-            <h2>Recommended Restaurants</h2>
-            <ul>
-                {restaurants.map((restaurant) => (
-                    <li key={restaurant.RestaurantID}>
-                        <h3>{restaurant.Name}</h3>
-                        <p>Cuisine: {restaurant.CuisineType}</p>
-                        <p>Address: {restaurant.Address}</p>
-                        <p>Rating: {restaurant.Rating}</p>
-                        <p>Price Range: {restaurant.PriceRange}</p>
-                        <p>Ambiance: {restaurant.Ambiance}</p>
-                    </li>
-                ))}
-            </ul>
+        <div className="restaurant-list">
+            {restaurants.map((restaurant) => (
+                <div
+                    key={restaurant.RestaurantID}
+                    className="restaurant-card"
+                    onClick={() => {
+                        if (restaurant.YelpURL) {
+                            window.open(restaurant.YelpURL, '_blank');
+                        } else {
+                            alert('Link not available!');
+                        }
+                    }}
+                    
+                    // onClick={() => window.open(restaurant.YelpURL, '_blank')} // Opens Yelp link in a new tab
+                >
+                    <h3>{restaurant.Name}</h3>
+                    <p><strong>Cuisine:</strong> {restaurant.CuisineType}</p>
+                    <p><strong>Address:</strong> {restaurant.Address}</p>
+                    <p><strong>Rating:</strong> {restaurant.Rating}</p>
+                    <p><strong>Price Range:</strong> {restaurant.PriceRange}</p>
+                    <p><strong>Ambiance:</strong> {restaurant.Ambiance}</p>
+                    <p><strong>Link:</strong> {restaurant.YelpURL}</p>
+                </div>
+            ))}
         </div>
     );
 };

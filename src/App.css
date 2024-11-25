@@ -45,3 +45,29 @@
   background-color: #0056b3;
   transform: scale(1.05); /* Slightly enlarges on hover */
 }
+
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between cards */
+  justify-content: center;
+  padding: 20px;
+}
+
+.restaurant-card {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.restaurant-card:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
