@@ -10,7 +10,7 @@ This repository contains the **frontend codebase** for BistroMoods, built with J
 
 ## Instructions
 
-Please visit the Backend **[bistromoods](https://github.com/yourusername/bistromoods)** repo and follow the instructions there to run th app.
+Please visit the Backend **[bistromoods](https://github.com/yourusername/bistromoods)** repo and follow the instructions there to run the app.
 
 ## Figma Wireframe Link
 https://www.figma.com/design/jOsQ3qwMC2oE0SdxLXI8yB/ppds_final?node-id=0-1&node-type=canvas&t=mdI9kGcN38dCQbIa-0
