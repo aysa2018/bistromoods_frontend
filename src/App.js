@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -7,20 +6,43 @@ import Signup from './components/Signup';
 import ProfilePage from './pages/ProfilePage';
 
 function App() {
+    // Authentication and Saved Restaurants State
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
     const [showSignup, setShowSignup] = useState(false);
+    const [savedRestaurants, setSavedRestaurants] = useState([]);
 
+    // Store login status in localStorage
     useEffect(() => {
         localStorage.setItem('isLoggedIn', isLoggedIn);
     }, [isLoggedIn]);
 
+    // Handle Login and Logout
     const handleLogin = () => setIsLoggedIn(true);
     const handleLogout = () => {
         setIsLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
+        setSavedRestaurants([]); // Clear saved restaurants on logout
     };
 
+    // Toggle between Signup and Login
     const toggleSignup = () => setShowSignup((prev) => !prev);
+
+    // Save a restaurant
+    const handleSaveRestaurant = (restaurant) => {
+        setSavedRestaurants((prev) => {
+            if (!prev.find((r) => r.RestaurantID === restaurant.RestaurantID)) {
+                console.log("Saving restaurant:", restaurant); // Debug log
+                return [...prev, restaurant]; // Add restaurant if not already saved
+            }
+            console.log("Restaurant already saved:", restaurant); // Debug log
+            return prev; // Avoid duplicates
+        });
+    };
+
+    // Unsave a restaurant
+    const handleUnsaveRestaurant = (restaurantID) => {
+        setSavedRestaurants((prev) => prev.filter((r) => r.RestaurantID !== restaurantID));
+    };
 
     return (
         <Router>
@@ -28,8 +50,24 @@ function App() {
                 {isLoggedIn ? (
                     <>
                         {/* Protected Routes */}
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route
+                            path="/"
+                            element={
+                                <HomePage
+                                    onSaveRestaurant={handleSaveRestaurant}
+                                    savedRestaurants={savedRestaurants}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <ProfilePage
+                                    savedRestaurants={savedRestaurants}
+                                    onUnsaveRestaurant={handleUnsaveRestaurant}
+                                />
+                            }
+                        />
                         <Route
                             path="*"
                             element={<Navigate to="/" replace />} // Redirect invalid paths to HomePage
