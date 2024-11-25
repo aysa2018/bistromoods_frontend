@@ -1,24 +1,37 @@
-// src/components/PromptInput.js
 import React, { useState } from 'react';
 
-const PromptInput = ({ onKeywordsExtracted }) => {
-    const [prompt, setPrompt] = useState("");
+// PromptInput component allows users to input a free-form description of their mood or preferences
+const PromptInput = ({ onUserInputExtracted }) => {
+    const [prompt, setPrompt] = useState(""); // State to hold the user's input text
 
+    // Handle form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const extractedKeywords = prompt.trim().split(" "); // Trim whitespace and split by spaces
-        onKeywordsExtracted(extractedKeywords);
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        // Trim whitespace and extract the input as a single string
+        const extractedInput = prompt.trim();
+
+        // Call the provided function to send the extracted input back to the parent component
+        if (onUserInputExtracted) {
+            onUserInputExtracted(extractedInput);
+        }
+
+        // Clear the input field after submission
+        setPrompt("");
     };
 
     return (
         <div style={styles.promptContainer}>
+            {/* Form to handle the user input */}
             <form onSubmit={handleSubmit}>
+                {/* Textarea for user input */}
                 <textarea
                     placeholder="Describe your mood or what you’re looking for..."
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
+                    value={prompt} // Bind textarea value to state
+                    onChange={(e) => setPrompt(e.target.value)} // Update state on input change
                     style={styles.textarea}
                 />
+                {/* Button to submit the form */}
                 <button type="submit" style={styles.button}>
                     Find the perfect match!
                 </button>
@@ -27,6 +40,7 @@ const PromptInput = ({ onKeywordsExtracted }) => {
     );
 };
 
+// Styling for the component
 const styles = {
     promptContainer: {
         width: '100%',

@@ -1,20 +1,27 @@
-// src/api.js
-export const searchRestaurantsByKeyword = async (keyword, filters) => {
-    const params = new URLSearchParams();
+// API function to search restaurants using user input and filters
+export const searchRestaurantsByUserInput = async (userPrompt, filters) => {
+    const params = new URLSearchParams(); // Create a query string object
 
-    if (keyword) params.append("keyword", keyword);
-    if (filters.price_range) params.append("price_range", filters.price_range);
-    if (filters.distance_range) params.append("distance_range", filters.distance_range);
-    if (filters.dietary_restriction) params.append("dietary_restriction", filters.dietary_restriction);
-    if (filters.special_feature) params.append("special_feature", filters.special_feature);
+    // Append user input and filters to the query string
+    if (userPrompt) params.append("user_prompt", userPrompt); // Add user input
+    if (filters.rating) params.append("rating", filters.rating); // Add rating filter
+    if (filters.price_range) params.append("price_range", filters.price_range); // Add price range filter
+    if (filters.dietary_restriction) params.append("dietary_restriction", filters.dietary_restriction); // Add dietary restriction filter
+    if (filters.special_feature) params.append("special_feature", filters.special_feature); // Add special feature filter
 
     try {
+        // Make a GET request to the backend API with query string
         const response = await fetch(`http://127.0.0.1:8000/restaurants/search/?${params.toString()}`);
+        
+        // Check if the response is OK (status 200)
         if (!response.ok) {
-            throw new Error("No restaurants found for the given filters");
+            throw new Error("No restaurants found for the given filters"); // Throw an error for failed requests
         }
+
+        // Parse the response data as JSON
         return await response.json();
     } catch (error) {
+        // Log the error to the console and return an empty array
         console.error("Error fetching restaurants:", error);
         return [];
     }

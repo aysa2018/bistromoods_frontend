@@ -1,26 +1,33 @@
-// src/pages/HomePage.js
-
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import PromptInput from '../components/PromptInput';
 import RestaurantList from '../components/RestaurantList';
-import { searchRestaurantsByKeyword } from '../api';
+import { searchRestaurantsByUserInput } from '../api'; // Import the updated API function
 
 // Main HomePage component
 const HomePage = () => {
-    const [filteredRestaurants, setFilteredRestaurants] = useState([]); // State to hold filtered restaurant data
-    const [filters, setFilters] = useState({
-        price_range: '',
-        distance_range: '',
-        dietary_restriction: '',
-        special_feature: '',
-    }); // State to hold filter selections
-    const [loading, setLoading] = useState(false); // Loading indicator
-    const [error, setError] = useState(null); // Error handling
-    const [keyword, setKeyword] = useState(''); // Keyword state for searching
+    // State to hold the list of filtered restaurants
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-    // Function to handle changes in filters
+    // State to hold selected filter values
+    const [filters, setFilters] = useState({
+        rating: '', // Minimum rating filter
+        price_range: '', // Price range filter ('Low', 'Medium', 'High')
+        dietary_restriction: '', // Dietary restriction filter (e.g., 'Vegan')
+        special_feature: '', // Special feature filter (e.g., 'Family Friendly')
+    });
+
+    // Loading indicator to show while data is being fetched
+    const [loading, setLoading] = useState(false);
+
+    // Error message state for handling errors
+    const [error, setError] = useState(null);
+
+    // State to store user input from the PromptInput component
+    const [userPrompt, setUserPrompt] = useState('');
+
+    // Function to handle filter changes
     const handleFilterChange = (name, value) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
@@ -28,56 +35,61 @@ const HomePage = () => {
         }));
     };
 
-    // Fetch data whenever filters or keyword changes
+    // Fetch restaurant data whenever userPrompt or filters change
     useEffect(() => {
         const fetchData = async () => {
-            // Skip fetch if no keyword is entered
-            if (!keyword) return;
+            // Skip fetch if userPrompt is empty
+            if (!userPrompt) return;
 
-            setLoading(true); // Start loading
+            setLoading(true); // Start loading indicator
             setError(null); // Clear previous errors
 
             try {
-                // Fetch data from backend with keyword and filters
-                const data = await searchRestaurantsByKeyword(keyword, filters);
-                setFilteredRestaurants(data); // Update restaurant list
+                // Call the API with userPrompt and filters
+                const data = await searchRestaurantsByUserInput(userPrompt, filters);
+
+                // Update the state with the fetched restaurant data
+                setFilteredRestaurants(data);
             } catch (error) {
+                // Log and set an error message if the API call fails
                 console.error("Error fetching restaurants:", error);
-                setError("An error occurred while fetching restaurants."); // Set error if fetch fails
+                setError("An error occurred while fetching restaurants.");
             } finally {
-                setLoading(false); // Stop loading
+                setLoading(false); // Stop loading indicator
             }
         };
 
-        fetchData(); // Execute data fetch function
-    }, [filters, keyword]); // Dependencies: re-run when filters or keyword changes
+        fetchData(); // Trigger the fetch function
+    }, [filters, userPrompt]); // Dependencies: Re-run when filters or userPrompt changes
 
-    // Handle keywords extracted from PromptInput
-    const handleKeywordsExtracted = (extractedKeywords) => {
-        setKeyword(extractedKeywords[0] || ''); // Use first extracted keyword if available
+    // Function to handle user input extraction from PromptInput
+    const handleUserPromptExtracted = (extractedPrompt) => {
+        // Set userPrompt with the extracted value or clear it if empty
+        setUserPrompt(extractedPrompt || '');
     };
 
     return (
         <div className="home-page" style={styles.homePage}>
+            {/* Header component with a title */}
             <Header title="BistroMoods" username="username" />
 
             <div style={styles.content}>
-                {/* Sidebar with Filter component */}
+                {/* Sidebar with filter options */}
                 <aside style={styles.sidebar}>
-                    <Filter onFilterChange={handleFilterChange} />
+                    <Filter onFilterChange={handleFilterChange} /> {/* Pass filter handler */}
                 </aside>
 
                 <main style={styles.mainContent}>
                     <h1>Welcome to BistroMoods</h1>
-                    
-                    {/* PromptInput for keyword extraction */}
-                    <PromptInput onKeywordsExtracted={handleKeywordsExtracted} />
 
-                    {/* Loading, error, and restaurant list display */}
+                    {/* PromptInput component to capture user input */}
+                    <PromptInput onUserInputExtracted={handleUserPromptExtracted} />
+
+                    {/* Display loading, error message, or the restaurant list */}
                     <div className="recommended-restaurants">
-                        {loading && <p>Loading restaurants...</p>}
-                        {error && <p style={styles.error}>{error}</p>}
-                        <RestaurantList restaurants={filteredRestaurants} />
+                        {loading && <p>Loading restaurants...</p>} {/* Show while loading */}
+                        {error && <p style={styles.error}>{error}</p>} {/* Show error if any */}
+                        <RestaurantList restaurants={filteredRestaurants} /> {/* Display results */}
                     </div>
                 </main>
             </div>
