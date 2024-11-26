@@ -1,0 +1,35 @@
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animated-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 20px;
+    height: 80px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(270deg, #162e24, #274a3b, #162e24);
+    background-size: 400% 400%;
+    animation: gradientAnimation 12s ease infinite;
+    border-bottom-left-radius: 75px;
+    border-bottom-right-radius: 0px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-logo {
+    height: 50px;
+    object-fit: contain;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

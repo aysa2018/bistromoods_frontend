@@ -138,7 +138,7 @@ const styles = {
         color: 'var(--text-color)',
         fontFamily: 'var(--body-font)',
         position: 'relative', // Ensures it moves independently
-        top: '250px', // Moves the filter section lower
+        top: '125px', // Moves the filter section lower
         left: '-150px', // Moves the filter section further to the left
     },
     filterGroup: {
