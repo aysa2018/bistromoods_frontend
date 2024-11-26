@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Header = ({ title, onLogout }) => {
+const Header = ({ onLogout }) => {
     const navigate = useNavigate();
 
     // Navigate to profile page on button click
@@ -11,7 +11,11 @@ const Header = ({ title, onLogout }) => {
 
     return (
         <header style={styles.header}>
-            <h1 style={styles.title}>{title}</h1>
+            <img
+                src="/logo512.png" // Path to the logo in the public folder
+                alt="BistroMoods Logo"
+                style={styles.logo}
+            />
             <div style={styles.actions}>
                 <button className="header-button profile-button" onClick={handleProfileClick}>
                     Profile
@@ -30,13 +34,18 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        padding: '10px 20px',
-        backgroundColor: '#415d43', // Keep the background consistent
-        borderBottom: '1px solid #ccc',
+        padding: '20px 20px', // Increased padding for a thicker header
+        backgroundColor: '#415d43', // Consistent background color
+        height: '80px', // Fixed height for consistency
+        boxSizing: 'border-box', // Ensure padding is included in the height
+        position: 'fixed', // Stick the header to the top
+        top: 0, // Ensure it touches the top of the viewport
+        zIndex: 1000, // Keep it above other elements
+        borderBottom: 'none', // Removed the border to eliminate the white line
     },
-    title: {
-        margin: 0,
-        fontSize: '1.5rem',
+    logo: {
+        height: '50px', // Adjust the logo height
+        objectFit: 'contain', // Maintain aspect ratio
     },
     actions: {
         display: 'flex',
