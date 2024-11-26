@@ -1,12 +1,10 @@
-// src/components/Header.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Header component with title and profile link
-const Header = ({ title }) => {
+const Header = ({ title, onLogout }) => {
     const navigate = useNavigate();
 
-    // Navigate to profile page on click
+    // Navigate to profile page on button click
     const handleProfileClick = () => {
         navigate('/profile'); // Redirect to /profile
     };
@@ -14,17 +12,18 @@ const Header = ({ title }) => {
     return (
         <header style={styles.header}>
             <h1 style={styles.title}>{title}</h1>
-            <span
-                style={styles.profileLink}
-                onClick={handleProfileClick}
-            >
-                Profile
-            </span>
+            <div style={styles.actions}>
+                <button className="header-button profile-button" onClick={handleProfileClick}>
+                    Profile
+                </button>
+                <button className="header-button logout-button" onClick={onLogout}>
+                    Logout
+                </button>
+            </div>
         </header>
     );
 };
 
-// Styling for Header component
 const styles = {
     header: {
         display: 'flex',
@@ -32,18 +31,17 @@ const styles = {
         alignItems: 'center',
         width: '100%',
         padding: '10px 20px',
-        backgroundColor: '#415d43',
+        backgroundColor: '#415d43', // Keep the background consistent
         borderBottom: '1px solid #ccc',
     },
     title: {
         margin: 0,
         fontSize: '1.5rem',
     },
-    profileLink: {
-        fontSize: '1rem',
-        color: '#007bff', // Blue color
-        textDecoration: 'underline', // Underlined
-        cursor: 'pointer', // Pointer cursor to mimic a link
+    actions: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px', // Space between buttons
     },
 };
 

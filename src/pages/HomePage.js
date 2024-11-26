@@ -1,4 +1,3 @@
-// src/pages/HomePage.js
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
@@ -6,7 +5,7 @@ import PromptInput from '../components/PromptInput';
 import RestaurantList from '../components/RestaurantList';
 import { searchRestaurantsByUserInput } from '../api'; // Import the updated API function
 
-const HomePage = ({ savedRestaurants, onSaveRestaurant }) => {
+const HomePage = ({ savedRestaurants, onSaveRestaurant, onLogout }) => {
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
     const [filters, setFilters] = useState({
         rating: '',
@@ -52,7 +51,7 @@ const HomePage = ({ savedRestaurants, onSaveRestaurant }) => {
 
     return (
         <div className="home-page" style={styles.homePage}>
-            <Header title="BistroMoods" username="username" />
+            <Header title="BistroMoods" onLogout={onLogout} /> {/* Pass onLogout */}
             <div style={styles.content}>
                 <aside style={styles.sidebar}>
                     <Filter onFilterChange={handleFilterChange} />

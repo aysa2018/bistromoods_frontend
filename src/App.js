@@ -52,6 +52,7 @@ function App() {
                                 <HomePage
                                     onSaveRestaurant={handleSaveRestaurant}
                                     savedRestaurants={savedRestaurants}
+                                    onLogout={handleLogout} // Pass handleLogout to HomePage
                                 />
                             }
                         />
@@ -87,7 +88,6 @@ function App() {
                     </>
                 )}
             </Routes>
-            {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
         </Router>
     );
 }
