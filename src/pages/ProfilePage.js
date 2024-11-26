@@ -1,8 +1,7 @@
-// src/pages/ProfilePage.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant }) => {
+const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) => {
     const navigate = useNavigate();
 
     const handleBackToHomeClick = () => {
@@ -12,6 +11,13 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant }) => {
     return (
         <div style={styles.profilePage}>
             <h1>Profile Page</h1>
+
+            {/* User Info */}
+            <div style={styles.userInfo}>
+                <p><strong>Username:</strong> {username}</p>
+                <p><strong>Email:</strong> {email}</p>
+            </div>
+
             <h2>Saved Restaurants</h2>
             {savedRestaurants.length === 0 ? (
                 <p>No saved restaurants yet.</p>
@@ -33,12 +39,14 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant }) => {
                     ))}
                 </div>
             )}
-            <span
-                style={styles.backToHomeLink}
+
+            {/* Back to Home Button */}
+            <button
+                style={styles.backToHomeButton}
                 onClick={handleBackToHomeClick}
             >
                 Back to Home
-            </span>
+            </button>
         </div>
     );
 };
@@ -50,10 +58,17 @@ const styles = {
         alignItems: 'center',
         padding: '20px',
     },
-    backToHomeLink: {
+    userInfo: {
+        marginBottom: '20px',
+        textAlign: 'center',
+    },
+    backToHomeButton: {
         fontSize: '1rem',
-        color: '#007bff',
-        textDecoration: 'underline',
+        color: '#fff',
+        backgroundColor: '#007bff',
+        border: 'none',
+        borderRadius: '5px',
+        padding: '10px 20px',
         cursor: 'pointer',
         marginTop: '20px',
     },
