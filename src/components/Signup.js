@@ -1,51 +1,44 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Ensure axios is imported
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from 'axios'; // Import axios
 import './Signup.css';
 
 const Signup = ({ onSignup }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null); // For error messages
-    const [loading, setLoading] = useState(false); // For loading state
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate(); // Initialize navigate
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null); // Reset error state
-        setLoading(true); // Start loading state
+        setError(null);
+        setLoading(true);
 
-        // Validate fields before making the API call
         if (!username || !email || !password) {
             setError("Please fill in all fields.");
-            setLoading(false); // Stop loading
+            setLoading(false);
             return;
         }
 
         try {
-            // Make a POST request to the FastAPI signup endpoint
             await axios.post('http://127.0.0.1:8000/users/', {
                 Username: username,
                 Email: email,
                 Password: password,
-                Preferences: {}, // Send empty preferences if not used
+                Preferences: {},
             });
 
-            // Clear form and show success
             setUsername("");
             setEmail("");
             setPassword("");
-            onSignup(); // Call the onSignup callback if signup is successful
-            alert("Signup successful!"); // Simple success feedback
-
+            onSignup();
         } catch (err) {
-            // Handle specific error responses from the API
-            if (err.response && err.response.data && err.response.data.detail) {
-                setError(err.response.data.detail);
-            } else {
-                setError("Signup failed. Please try again.");
-            }
+            setError(err.response?.data?.detail || "Signup failed. Please try again.");
         } finally {
-            setLoading(false); // Stop loading state
+            setLoading(false);
         }
     };
 
@@ -85,6 +78,17 @@ const Signup = ({ onSignup }) => {
                         {loading ? "Signing Up..." : "Sign Up"}
                     </button>
                 </form>
+            </div>
+            {/* "Already have an account? Sign In" Section */}
+            <div className="signup-login-container">
+                <p className="signup-login-text">Already have an account?</p>
+                <button
+                    className="signup-login-button"
+                    onClick={() => navigate("/login")}
+                    disabled={loading}
+                >
+                    Sign In
+                </button>
             </div>
         </div>
     );

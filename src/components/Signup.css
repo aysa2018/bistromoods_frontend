@@ -100,3 +100,45 @@
     font-size: 14px;
     text-align: center;
 }
+
+/* "Already have an account? Sign In" Section Below Signup Box */
+.signup-login-container {
+    margin-top: 20px; /* Space between signup box and sign-in section */
+    text-align: center; /* Center-align text and button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Reduced space between text and button */
+}
+
+/* Sign-in Text Styling for Signup Page */
+.signup-login-text {
+    font-size: 16px;
+    color: var(--primary-color); /* Cream lettering */
+    white-space: nowrap; /* Prevent text wrapping to a new line */
+}
+
+/* Styled Sign-in Button for Signup Page */
+.signup-login-button {
+    background-color: var(--secondary-color); /* Same as Sign Up button */
+    color: var(--primary-color); /* Same as Sign Up button text */
+    border: none; /* No border */
+    padding: 6px 14px; /* Smaller padding for a compact button */
+    font-size: 14px; /* Reduced font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect for Sign-in Button */
+.signup-login-button:hover {
+    background-color: var(--button-hover-color); /* Same hover color as Sign Up button */
+    transform: scale(1.05); /* Slightly enlarge button */
+}
+
+/* Disabled State for Sign-in Button */
+.signup-login-button:disabled {
+    background-color: #cccccc; /* Gray background for disabled */
+    cursor: not-allowed;
+    transform: none; /* No hover effect when disabled */
+}
