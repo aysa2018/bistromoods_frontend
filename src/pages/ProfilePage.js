@@ -12,12 +12,6 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
         <div style={styles.profilePage}>
             <h1>Profile Page</h1>
 
-            {/* User Info */}
-            {/* <div style={styles.userInfo}>
-                <p><strong>Username:</strong> {username}</p>
-                <p><strong>Email:</strong> {email}</p>
-            </div> */}
-
             <h2>Saved Restaurants</h2>
             {savedRestaurants.length === 0 ? (
                 <p>No saved restaurants yet.</p>
@@ -31,6 +25,7 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
                             <p><strong>Rating:</strong> {restaurant.Rating}</p>
                             <p><strong>Price Range:</strong> {restaurant.PriceRange}</p>
                             <button
+                                className="unsave-button"
                                 onClick={() => onUnsaveRestaurant(restaurant.RestaurantID)}
                             >
                                 Unsave
@@ -42,7 +37,7 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
 
             {/* Back to Home Button */}
             <button
-                style={styles.backToHomeButton}
+                className="back-to-home-button"
                 onClick={handleBackToHomeClick}
             >
                 Back to Home
@@ -57,20 +52,6 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
         padding: '20px',
-    },
-    userInfo: {
-        marginBottom: '20px',
-        textAlign: 'center',
-    },
-    backToHomeButton: {
-        fontSize: '1rem',
-        color: '#fff',
-        backgroundColor: '#007bff',
-        border: 'none',
-        borderRadius: '5px',
-        padding: '10px 20px',
-        cursor: 'pointer',
-        marginTop: '20px',
     },
 };
 
