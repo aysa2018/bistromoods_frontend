@@ -22,17 +22,25 @@ const PromptInput = ({ onUserInputExtracted }) => {
 
     return (
         <div style={styles.promptContainer}>
-            {/* Form to handle the user input */}
             <form onSubmit={handleSubmit}>
-                {/* Textarea for user input */}
                 <textarea
                     placeholder="Describe your mood or what you’re looking for..."
                     value={prompt} // Bind textarea value to state
                     onChange={(e) => setPrompt(e.target.value)} // Update state on input change
                     style={styles.textarea}
                 />
-                {/* Button to submit the form */}
-                <button type="submit" style={styles.button}>
+                <button
+                    type="submit"
+                    style={styles.button}
+                    onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = 'var(--button-hover-color)';
+                        e.target.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = 'var(--secondary-color)';
+                        e.target.style.transform = 'scale(1)';
+                    }}
+                >
                     Find the perfect match!
                 </button>
             </form>
@@ -44,6 +52,7 @@ const PromptInput = ({ onUserInputExtracted }) => {
 const styles = {
     promptContainer: {
         width: '100%',
+        marginTop: '50px',
         marginBottom: '20px',
     },
     textarea: {
@@ -51,19 +60,24 @@ const styles = {
         height: '150px',
         padding: '15px',
         fontSize: '18px',
-        borderRadius: '8px',
-        border: '1px solid #ccc',
+        fontFamily: 'var(--body-font)',
+        color: 'var(--text-color)',
+        backgroundColor: 'var(--card-background)',
+        borderRadius: '10px',
+        border: '1px solid var(--border-color)',
         resize: 'vertical',
         marginBottom: '10px',
     },
     button: {
         padding: '12px 24px',
         fontSize: '16px',
-        color: '#fff',
-        backgroundColor: '#007bff',
-        border: 'none',
+        fontFamily: 'var(--body-font)',
+        color: 'var(--primary-color)', // Cream text
+        backgroundColor: 'var(--secondary-color)', // Green background
+        border: '2px solid var(--primary-color)', // Cream outline
         borderRadius: '4px',
         cursor: 'pointer',
+        transition: 'background-color 0.3s ease-in-out, transform 0.2s ease-in-out',
     },
 };
 

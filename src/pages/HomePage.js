@@ -57,10 +57,11 @@ const HomePage = ({ savedRestaurants, onSaveRestaurant, onLogout }) => {
                     <Filter onFilterChange={handleFilterChange} />
                 </aside>
                 <main style={styles.mainContent}>
-                    <h1>Welcome to BistroMoods</h1>
+                    <h1 style={styles.welcomeHeader}>Welcome to BistroMoods</h1>
+                    <h2 style={styles.subtitle}><em>Let's Find Your Vibe</em></h2>
                     <PromptInput onUserInputExtracted={handleUserPromptExtracted} />
                     <div className="recommended-restaurants">
-                        {loading && <p>Loading restaurants...</p>}
+                        {loading && <p>Matching your vibe...</p>}
                         {error && <p style={styles.error}>{error}</p>}
                         <RestaurantList
                             restaurants={filteredRestaurants}
@@ -91,6 +92,18 @@ const styles = {
     mainContent: {
         flex: '1',
         paddingLeft: '20px',
+        marginTop: '150px', // Adds space above the main content
+    },
+    welcomeHeader: {
+        marginTop: '40px', // Moves the header further down
+        textAlign: 'center',
+    },
+    subtitle: {
+        marginTop: '10px', // Adds spacing below the main header
+        fontSize: '1.5rem', // Adjusts font size for the subtitle
+        textAlign: 'center',
+        color: '#fff', // Makes the subtitle white
+        fontStyle: 'italic', // Italicizes the subtitle
     },
     error: {
         color: 'red',

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const Filter = ({ onFilterChange }) => {
-    // State for selected neighborhoods
     const [selectedNeighborhoods, setSelectedNeighborhoods] = useState([]);
 
-    // Define boroughs and neighborhoods matching the backend `neighborhoods.py`
     const neighborhoods = {
         Manhattan: [
             "Harlem",
@@ -35,7 +33,6 @@ const Filter = ({ onFilterChange }) => {
         ],
     };
 
-    // Handle neighborhood checkbox changes
     const handleNeighborhoodChange = (neighborhood) => {
         setSelectedNeighborhoods((prev) =>
             prev.includes(neighborhood)
@@ -44,24 +41,21 @@ const Filter = ({ onFilterChange }) => {
         );
     };
 
-    // Handle "Select All" for a borough
     const handleSelectAll = (borough) => {
         const boroughNeighborhoods = neighborhoods[borough];
         const allSelected = boroughNeighborhoods.every((n) => selectedNeighborhoods.includes(n));
         setSelectedNeighborhoods((prev) =>
             allSelected
-                ? prev.filter((n) => !boroughNeighborhoods.includes(n)) // Remove all
-                : [...prev, ...boroughNeighborhoods.filter((n) => !prev.includes(n))] // Add missing
+                ? prev.filter((n) => !boroughNeighborhoods.includes(n))
+                : [...prev, ...boroughNeighborhoods.filter((n) => !prev.includes(n))]
         );
     };
 
-    // Convert selected neighborhoods to a string format suitable for the backend
     useEffect(() => {
-        const selectedNeighborhoodString = selectedNeighborhoods.join(",").toLowerCase(); // Convert to lowercase for backend compatibility
+        const selectedNeighborhoodString = selectedNeighborhoods.join(",").toLowerCase();
         onFilterChange("neighborhoods", selectedNeighborhoodString);
     }, [selectedNeighborhoods, onFilterChange]);
 
-    // Handle changes in dropdowns and pass to parent component (HomePage)
     const handleChange = (e) => {
         const { name, value } = e.target;
         onFilterChange(name, value);
@@ -71,9 +65,8 @@ const Filter = ({ onFilterChange }) => {
         <div style={styles.filterContainer}>
             <h3>Filter by:</h3>
             
-            {/* Price Range */}
             <div style={styles.filterGroup}>
-                <label>Price Range</label>
+                <label style={styles.label}>Price Range</label>
                 <select name="price_range" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
                     <option value="Low">Low</option>
@@ -82,9 +75,8 @@ const Filter = ({ onFilterChange }) => {
                 </select>
             </div>
 
-            {/* Dietary Restrictions */}
             <div style={styles.filterGroup}>
-                <label>Dietary Restrictions</label>
+                <label style={styles.label}>Dietary Restrictions</label>
                 <select name="dietary_restriction" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
                     <option value="Vegetarian">Vegetarian</option>
@@ -93,9 +85,8 @@ const Filter = ({ onFilterChange }) => {
                 </select>
             </div>
 
-            {/* Special Features */}
             <div style={styles.filterGroup}>
-                <label>Special Features</label>
+                <label style={styles.label}>Special Features</label>
                 <select name="special_feature" style={styles.select} onChange={handleChange}>
                     <option value="">Select</option>
                     <option value="Family Friendly">Family Friendly</option>
@@ -104,13 +95,13 @@ const Filter = ({ onFilterChange }) => {
                 </select>
             </div>
 
-            {/* Borough and Neighborhood Filters */}
-            <label>Neighborhoods</label>
+            <label style={styles.label}>Neighborhoods</label>
             {Object.keys(neighborhoods).map((borough) => (
                 <div key={borough} style={styles.boroughSection}>
-                    <label>
+                    <label style={styles.label}>
                         <input
                             type="checkbox"
+                            style={styles.checkbox}
                             checked={neighborhoods[borough].every((n) => selectedNeighborhoods.includes(n))}
                             onChange={() => handleSelectAll(borough)}
                         />
@@ -118,10 +109,11 @@ const Filter = ({ onFilterChange }) => {
                     </label>
                     <div style={{ paddingLeft: "20px" }}>
                         {neighborhoods[borough].map((neighborhood) => (
-                            <div style={styles.filterGroup}>
-                                <label>
+                            <div key={neighborhood} style={styles.filterGroup}>
+                                <label style={styles.label}>
                                     <input
                                         type="checkbox"
+                                        style={styles.checkbox}
                                         checked={selectedNeighborhoods.includes(neighborhood)}
                                         onChange={() => handleNeighborhoodChange(neighborhood)}
                                     />
@@ -136,15 +128,18 @@ const Filter = ({ onFilterChange }) => {
     );
 };
 
-// Styling for Filter component
 const styles = {
     filterContainer: {
         width: '200px',
         padding: '20px',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--card-background)',
         borderRadius: '8px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        marginRight: '20px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        color: 'var(--text-color)',
+        fontFamily: 'var(--body-font)',
+        position: 'relative', // Ensures it moves independently
+        top: '250px', // Moves the filter section lower
+        left: '-150px', // Moves the filter section further to the left
     },
     filterGroup: {
         marginBottom: '15px',
@@ -154,13 +149,27 @@ const styles = {
         padding: '8px',
         fontSize: '16px',
         borderRadius: '4px',
-        border: '1px solid #ddd',
+        border: '1px solid var(--border-color)',
+        backgroundColor: 'var(--secondary-color)',
+        color: 'var(--primary-color)',
+        fontFamily: 'var(--body-font)',
     },
     boroughSection: {
         marginBottom: '15px',
-        border: '1px solid #ddd',
+        border: '1px solid var(--border-color)',
         borderRadius: '5px',
         padding: '10px',
+        backgroundColor: 'var(--secondary-color)',
+        color: 'var(--primary-color)',
+    },
+    checkbox: {
+        marginRight: '8px',
+        accentColor: 'var(--primary-color)',
+    },
+    label: {
+        fontSize: '14px',
+        fontFamily: 'var(--body-font)',
+        color: 'var(--primary-color)',
     },
 };
 
