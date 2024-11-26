@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -6,6 +7,8 @@ const Login = ({ onLogin }) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate(); // Initialize navigate function
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -67,9 +70,22 @@ const Login = ({ onLogin }) => {
                         className="login-input"
                         disabled={loading}
                     />
-                    <button type="submit" className="login-button">Login</button>
+                    <button type="submit" className="login-button" disabled={loading}>
+                        Login
+                    </button>
                 </form>
             </div>
+            {/* Centered Sign-up Section below the box */}
+            <div className="login-signup-container">
+    <p className="login-signup-text">Don’t have an account?</p>
+    <button
+        className="login-signup-button"
+        onClick={() => navigate("/signup")}
+        disabled={loading}
+    >
+        Sign Up
+    </button>
+</div>
         </div>
     );
 };

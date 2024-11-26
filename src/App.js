@@ -8,7 +8,6 @@ import ProfilePage from './pages/ProfilePage';
 function App() {
     // Authentication and Saved Restaurants State
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
-    const [showSignup, setShowSignup] = useState(false);
     const [savedRestaurants, setSavedRestaurants] = useState([]);
 
     // Store login status in localStorage
@@ -23,9 +22,6 @@ function App() {
         localStorage.removeItem('isLoggedIn');
         setSavedRestaurants([]); // Clear saved restaurants on logout
     };
-
-    // Toggle between Signup and Login
-    const toggleSignup = () => setShowSignup((prev) => !prev);
 
     // Save a restaurant
     const handleSaveRestaurant = (restaurant) => {
@@ -78,28 +74,11 @@ function App() {
                         {/* Public Routes */}
                         <Route
                             path="/"
-                            element={
-                                <div>
-                                    {/* <h1>Welcome to BistroMoods</h1> */}
-                                    {showSignup ? (
-                                        <>
-                                            <Signup onSignup={handleLogin} />
-                                            <p>
-                                                Already have an account?{" "}
-                                                <button onClick={toggleSignup}>Login</button>
-                                            </p>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Login onLogin={handleLogin} />
-                                            <p>
-                                                Don’t have an account?{" "}
-                                                <button onClick={toggleSignup}>Sign up</button>
-                                            </p>
-                                        </>
-                                    )}
-                                </div>
-                            }
+                            element={<Login onLogin={handleLogin} />}
+                        />
+                        <Route
+                            path="/signup"
+                            element={<Signup onSignup={handleLogin} />}
                         />
                         <Route
                             path="*"

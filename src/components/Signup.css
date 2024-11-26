@@ -1,5 +1,3 @@
-/* Signup.css */
-
 /* Page background with gradient and texture */
 .signup-page {
     display: flex;
@@ -19,7 +17,7 @@
 
 /* Logo styles */
 .signup-logo {
-    width: 300px; /* Large logo size */
+    width: 350px; /* Match the logo size from Login.css */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 40px; /* Space between the logo and the signup box */
 }
@@ -29,31 +27,38 @@
     width: 100%;
     max-width: 400px; /* Limit signup box width */
     padding: 20px; /* Inner spacing */
-    background-color: var(--card-background); /* Cream background for contrast */
+    background-color: var(--card-background); /* Dark greenish gray for cards */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    display: flex; /* Ensures the container behaves correctly */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center-align child elements */
+    gap: 15px; /* Add spacing between elements */
 }
 
 /* Title styles */
 .signup-title {
-    margin-bottom: 20px;
-    font-size: 28px; /* Slightly larger title font */
-    color: var(--primary-color); /* White or accent color */
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 28px; /* Larger title font */
+    color: var(--primary-color); /* White text accents */
     font-family: var(--header-font); /* Consistent header font */
+    text-align: center; /* Ensure title is centered */
+    width: 100%; /* Take full width to prevent layout issues */
 }
 
 /* Form container */
 .signup-form {
+    width: 100%; /* Ensure form takes full width */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack input fields and button vertically */
     align-items: center;
+    gap: 15px; /* Add spacing between form elements */
 }
 
 /* Input fields */
 .signup-input {
-    width: 100%;
+    width: 100%; /* Full width of the container */
     padding: 12px;
-    margin-bottom: 15px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid var(--border-color); /* Subtle border */
@@ -64,7 +69,7 @@
 
 /* Signup button */
 .signup-button {
-    width: 100%;
+    width: 100%; /* Full width of the container */
     padding: 12px;
     font-size: 16px;
     color: var(--primary-color); /* White for button text */
