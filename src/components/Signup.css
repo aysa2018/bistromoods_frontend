@@ -1,15 +1,20 @@
 /* Signup.css */
 
-/* Page background with gradient */
+/* Page background with gradient and texture */
 .signup-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh; /* Full viewport height */
-    background: linear-gradient(135deg, var(--gradient-color), var(--secondary-color)); /* Gradient green from App.css */
+    background: 
+        url('./texture.png'), /* Transparent texture file */
+        linear-gradient(135deg, var(--gradient-color), var(--secondary-color)); /* Gradient colors from theme */
+    background-size: cover, cover; /* Scale both texture and gradient */
+    background-blend-mode: overlay; /* Blend the texture with the gradient */
     color: var(--text-color); /* Consistent text color */
     text-align: center;
+    font-family: var(--body-font); /* Nostalgic font */
 }
 
 /* Logo styles */
@@ -51,7 +56,9 @@
     margin-bottom: 15px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ddd; /* Subtle border */
+    border: 1px solid var(--border-color); /* Subtle border */
+    background-color: var(--card-background); /* Consistent card background */
+    color: var(--text-color); /* Consistent text color */
     font-family: var(--body-font); /* Nostalgic font */
 }
 
@@ -60,7 +67,7 @@
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    color: #fff;
+    color: var(--primary-color); /* White for button text */
     background-color: var(--secondary-color); /* Forest green */
     border: none;
     border-radius: 5px;
