@@ -182,6 +182,7 @@ a:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  position: relative; /* Added for Save button positioning */
 }
 
 .restaurant-card:hover {
@@ -189,4 +190,26 @@ a:hover {
   color: var(--primary-color);
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Save button styling */
+.save-button-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.save-button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: var(--button-hover-color);
 }
