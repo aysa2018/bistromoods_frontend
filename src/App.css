@@ -5,6 +5,7 @@
   --gradient-color: #09211b; /* Darker green for gradient */
   --text-color: #E0E0E0; /* Light gray for general text */
   --button-hover-color: #1E3932; /* Darker forest green for hover */
+  --button-light-color: #FDCB58; /* Yellow for the saved star */
   --border-color: #3C3C3C; /* Subtle border color */
   --card-background: #1F2E2E; /* Dark greenish gray for cards */
   --header-font: 'Montserrat', sans-serif; /* Trendy font for header */
@@ -39,65 +40,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Back to Home Button Styling */
-.back-to-home-button {
-  font-size: 1rem;
-  color: #e7d9bc; /* Cream color for text */
-  background-color: #113b2d; /* Forest green for background */
-  border: 2px solid #e7d9bc; /* Cream border */
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.back-to-home-button:hover {
-  background-color: #1E3932; /* Darker green on hover */
-  transform: scale(1.1); /* Enlarges on hover */
-}
-
-/* General Header Button Styles */
-.header-button {
-  font-size: 16px;
-  padding: 12px;
-  color: var(--primary-color); /* White for button text */
-  background-color: var(--secondary-color); /* Forest green */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-/* Hover Effect for Header Buttons */
-.header-button:hover {
-  background-color: var(--button-hover-color); /* Darker forest green */
-  transform: scale(1.05); /* Slightly enlarge button */
-}
-
-/* Save button styling */
-.save-button-wrapper {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.save-button {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color); /* Cream outline */
-  border-radius: 4px;
-  padding: 5px 10px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.save-button:hover {
-  background-color: var(--button-hover-color);
-  transform: scale(1.2); /* Enlarges on hover */
-}
-
 /* Restaurant list styling */
 .restaurant-list {
   display: flex;
@@ -119,7 +61,7 @@ a:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  position: relative; /* Added for Save button positioning */
+  position: relative; /* Added for positioning buttons */
 }
 
 .restaurant-card:hover {
@@ -129,11 +71,58 @@ a:hover {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Unsave button styling */
-.unsave-button {
-  background-color: var(--secondary-color); /* Forest green background */
-  color: var(--primary-color); /* Cream text */
-  border: 2px solid var(--primary-color); /* Cream border */
+/* Save Star Styling - Changes from white to yellow when clicked */
+.save-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-button::before {
+  content: '★';
+  font-size: 40px;
+  color: var(--primary-color); /* White for unsaved */
+  transition: color 0.3s ease;
+}
+
+.saved-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saved-button::before {
+  content: '★';
+  font-size: 40px;
+  color: var(--button-light-color); /* Yellow for saved */
+}
+
+/* Book Button Styling */
+.book-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color); /* Cream outline */
   border-radius: 4px;
   padding: 5px 10px;
   font-size: 12px;
@@ -141,7 +130,7 @@ a:hover {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.unsave-button:hover {
-  background-color: var(--button-hover-color); /* Darker green on hover */
+.book-button:hover {
+  background-color: var(--button-hover-color); /* Darker green */
   transform: scale(1.2); /* Enlarges on hover */
 }
