@@ -6,9 +6,9 @@ const RestaurantList = ({ restaurants, onSaveRestaurant }) => {
     const [bookingLinks, setBookingLinks] = useState({}); // Store booking links for restaurants
 
     // Google API credentials (use .env for production)
-    const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY || 'AIzaSyCG1uIsLcLzTL761Ei17edOG_I7BmGE9n0';
-    const CX = process.env.REACT_APP_SEARCH_ENGINE_ID || 'd7630a4fbdab44448';
-
+    const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+    const CX = process.env.REACT_APP_SEARCH_ENGINE_ID;
+    
     /**
      * Fetches the booking link for a restaurant using Google Custom Search API.
      * @param {string} restaurantName - Name of the restaurant to search for.
