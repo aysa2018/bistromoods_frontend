@@ -90,18 +90,17 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
                     ))}
             </MapContainer>
 
-            
+            {/* Back to Home Button */}
+            <button
+                className="back-to-home-button"
+                onClick={() => navigate('/')}
+            >
+                Back to Home
+            </button>
         </div>
     );
 };
 
-const styles = {
-    profilePage: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '20px',
-    },
-};
+
 
 export default ProfilePage;
