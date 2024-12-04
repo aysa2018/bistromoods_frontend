@@ -101,6 +101,13 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
     );
 };
 
-
+const styles = {
+    profilePage: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+    },
+};
 
 export default ProfilePage;
