@@ -31,7 +31,7 @@ const ProfilePage = ({ savedRestaurants, onUnsaveRestaurant, username, email }) 
         <div style={styles.profilePage}>
             <h1>Profile Page</h1>
             <h2>Welcome, {username || 'Guest'}</h2>
-            <p>Email: {email || 'No email provided'}</p>
+            
 
             <h2>Saved Restaurants</h2>
             {savedRestaurants.length === 0 ? (
