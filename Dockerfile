@@ -8,7 +8,7 @@ WORKDIR /usr/share/nginx/html
 COPY build/ .
 
 # Copy custom Nginx configuration file (if needed)
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 80 (default for Nginx)
 EXPOSE 80
