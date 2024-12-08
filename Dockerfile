@@ -1,17 +1,36 @@
-# Use official Nginx image to serve the React app
+# Build stage
+FROM node:16-alpine as builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all frontend files
+COPY . .
+
+# Build application
+RUN npm run build
+
+# Runtime stage
 FROM nginx:alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/share/nginx/html
+# Copy built files from builder
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copy the build output from the local machine to the container
-COPY build/ .
+# Create nginx.conf that reads PORT environment variable from cloud run - google assigns random ports, so we need this
+RUN printf 'server {\n\
+    listen $PORT;\n\
+    location / {\n\
+        root /usr/share/nginx/html;\n\
+        index index.html index.htm;\n\
+        try_files $uri $uri/ /index.html;\n\
+    }\n\
+}\n' > /etc/nginx/conf.d/default.conf.template
 
-# Copy custom Nginx configuration file (if needed)
-#COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80 (default for Nginx)
-EXPOSE 80
-
-# Start Nginx when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+# Use shell to substitute PORT value in nginx.conf
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
