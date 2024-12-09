@@ -12,7 +12,7 @@ export const searchRestaurantsByUserInput = async (userPrompt, filters) => {
 
     try {
         // Make a GET request to the backend API with query string
-        const response = await fetch(`https://127.0.0.1:800/restaurants/search/?${params.toString()}`);
+        const response = await fetch(`http://127.0.0.1:8000/restaurants/search/?${params.toString()}`);
         
         // Check if the response is OK (status 200)
         if (!response.ok) {

@@ -17,11 +17,11 @@ body {
   font-family: var(--body-font);
   color: var(--text-color);
   background: 
-    url('./pages/texturemain.png'), /* Updated relative path */
-    linear-gradient(135deg, var(--secondary-color), var(--gradient-color)); /* Gradient layer */
-  background-size: cover, cover; /* Scale both texture and gradient */
-  background-blend-mode: overlay; /* Blend texture with gradient */
-  background-attachment: fixed; /* Keeps the background fixed during scroll */
+    url('./pages/texturemain.png'),
+    linear-gradient(135deg, var(--secondary-color), var(--gradient-color));
+  background-size: cover, cover;
+  background-blend-mode: overlay;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
 }
@@ -70,7 +70,6 @@ a:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
-
 /* Save Star Styling - Changes from white to yellow when clicked */
 .save-button {
   position: absolute;
@@ -133,4 +132,89 @@ a:hover {
 .book-button:hover {
   background-color: var(--button-hover-color); /* Darker green */
   transform: scale(1.2); /* Enlarges on hover */
+}
+/* Profile and Logout Button Styling */
+.profile-logout-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px; /* Space between buttons */
+  padding: 20px;
+}
+
+.profile-button,
+.logout-button {
+  font-size: 14px;
+  padding: 10px 20px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profile-button:hover,
+.logout-button:hover {
+  background-color: var(--button-hover-color); /* Darker green */
+  transform: scale(1.1); /* Enlarges on hover */
+}
+/* Back to Home Button Styling */
+.back-to-home-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: var(--header-font);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-home-button:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(1.1); /* Slightly enlarges on hover */
+}
+
+/* Unsave Button Styling */
+.unsave-button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-family: var(--header-font);
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.unsave-button:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(1.05); /* Subtle enlarging effect */
+}
+
+/* Choose Marker Dropdown Styling */
+select {
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-family: var(--body-font);
+  background-color: var(--card-background);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+select:hover {
+  border-color: var(--primary-color);
+  background-color: var(--button-hover-color);
+}
+
+option {
+  background-color: var(--card-background);
+  color: var(--primary-color);
 }
