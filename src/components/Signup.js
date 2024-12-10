@@ -24,7 +24,7 @@ const Signup = ({ onSignup }) => {
         }
 
         try {
-            await axios.post('http://127.0.0.1:8000/users/', {
+            await axios.post('https://bistromoods-886616041508.us-central1.run.app/users/', {
                 Username: username,
                 Email: email,
                 Password: password,
