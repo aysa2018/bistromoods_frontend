@@ -22,7 +22,7 @@ const Login = ({ onLogin }) => {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/login/", {
+            const response = await fetch("https://bistromoods-886616041508.us-central1.run.app/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
